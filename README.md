@@ -7,7 +7,7 @@ Having an offline PC can be useful for example in order to implement a cold wall
 
 This guide has been written and tested for Ubuntu, but il could be extended, with proper (and out of scope) modifications, to any linux distribution.
 
-:warning: **WARNING**: the following actions are potentially destructive, if not properly done. We strongly suggest to use a fresh installation, or to backup all the important data before to proceed.
+:warning: **WARNING: the following actions are potentially destructive, if not properly done. We strongly suggest to use a fresh installation, or to backup all the important data before to proceed.**
 
 
 ## System setup
