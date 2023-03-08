@@ -84,3 +84,14 @@ cp .config .config.back
 ```
 
 ![screenshot](/screenshots/config_copy.png?raw=true)
+
+Enter in the kernel configuration tool with the following command. It will automatically load the current running kernel configuration, saved in the previous step:
+
+```
+make menuconfig
+```
+
+The command will show the kernel configuration tool, as in the following picture:
+
+
+![screenshot](/screenshots/config_edit.png?raw=true)
