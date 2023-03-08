@@ -93,5 +93,8 @@ make menuconfig
 
 The command will show the kernel configuration tool, as in the following picture:
 
-
 ![screenshot](/screenshots/config_edit.png?raw=true)
+
+The kernel configuration options can be navigated using the :arrow_up: arrow up and :arrow_down: arrow down keys_ , while the underneath commands (_Select_, _Exit_, _Save_, etc...) can be navigated with the :arrow_left: arrow left and :arrow_right: arrow right keys.
+
+The fields with a right arrow (--->) are submenu, which can be accessed by typing the :leftwards_arrow_with_hook: enter key (with the _Select_ option highlighted).
