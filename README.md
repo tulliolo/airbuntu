@@ -39,3 +39,8 @@ Now, check the network status with:
 ip link
 ip addr
 ```
+
+![screenshot](/screenshots/network_status_start.png?raw=true)
+
+In the screenshot above I have only one active interface (_enp0s3_), with an assigned IP address; but you could have any other wired and/or wireless interface. The goal is to make them all disappear.
+
