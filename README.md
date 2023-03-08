@@ -32,3 +32,10 @@ Install the needed dependencies to build the kernel with:
 ```
 sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
 ```
+
+Now, check the network status with:
+
+```
+ip link
+ip addr
+```
