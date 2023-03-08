@@ -44,8 +44,7 @@ ip addr
 
 In the screenshot above I have only one active interface (_enp0s3_), with an assigned IP address; but you could have any other wired and/or wireless interface. The goal is to make them all disappear.
 
-## Kernel installation
-### Kernel download
+## Kernel download
 In the terminal, create a new directory for saving the kernel source code with the commands:
 
 ```
@@ -95,6 +94,76 @@ The command will show the kernel configuration tool, as in the following picture
 
 ![screenshot](/screenshots/config_edit.png?raw=true)
 
-The kernel configuration options can be navigated using the :arrow_up: arrow up and :arrow_down: arrow down keys_ , while the underneath commands (_Select_, _Exit_, _Save_, etc...) can be navigated with the :arrow_left: arrow left and :arrow_right: arrow right keys.
+The kernel configuration options can be selected using the :arrow_up: arrow up and :arrow_down: arrow down keys, while the underneath actions (**Select**, **Exit**, **Save**, etc...) can be selected with the :arrow_left: arrow left and :arrow_right: arrow right keys.
 
-The fields with a right arrow (--->) are submenu, which can be accessed by typing the :leftwards_arrow_with_hook: enter key (with the _Select_ option highlighted).
+The kernel configuration options with a left **[*]** symbol are marked to be built, while the ones with a left **&lt;M&gt;** symbol are marked to be built as modules; the kernel configuration options with a left **[ ]** symbol are unmarked and excluded from the compilation.
+
+In order to exclude a field from the compilation, you have to reach it and press the **n** key.
+
+The fields with a right **---&gt;** symbol are submenus, which can be accessed by typing the :leftwards_arrow_with_hook: enter key with the **Select** action highlighted.
+
+In order to return to the parent menu (if you are in a submenu), or exit (if you already are in the main menu), you can select the action **Exit** and press the :leftwards_arrow_with_hook: enter key.
+
+In order to save the configuration, you can select the action **Save** and press the :leftwards_arrow_with_hook: enter key.
+
+Following the instructions above, we can completely remove the network interfaces by unmarking (by the **n** key) the following fields:
+- Networking Support ---&gt;&nbsp;&nbsp;Wireless ---&gt;&nbsp;&nbsp;**cfg80211 – wireless configuration API**
+- Device Drivers ---&gt;&nbsp;&nbsp;**Network devide support ---&gt;**<br/>This is a submenu, so you have to access it and then unmark every field in it and in its submenus; don't worry if a few fields stay marked, because they cannot be unmarked but won't invalidate the result.
+
+After this, you can **Save** the new configuration and **Exit**.
+
+Ubuntu (and Debian) adds a signature checking system directly to the kernel, then in order to correctly compile our custom kernel, we have to disable this feature by the following commands:
+
+```
+scripts/config --disable SYSTEM_TRUSTED_KEYS
+scripts/config --disable SYSTEM_REVOCATION_KEYS
+```
+
+## Kernel compilation
+We can start the kernel compilation by the following command:
+
+```
+make -j $(nproc)
+```
+
+Now it's time to have a break and relax, since the kernel compilation will last for a long time.
+
+:bulb: **TIP**: the _-j $(nproc)_ option attemts a parallel building based on the number of processors (saving some time).
+
+:warning: **WARNING: if the compilation ends with some error logged, don't proceed with the next steps!**
+
+## Kernel installation
+When the compilation ends, we can install the new kernel by the commands:
+
+```
+sudo make modules_install
+sudo make install
+```
+
+And then update the boot loader configuration:
+
+```
+sudo update-initramfs -c -k 5.19.17
+sudo update-grub
+```
+
+![screenshot](/screenshots/grub_update.png?raw=true)
+
+## Post installation actions
+In order to apply the new kernel, firstly we have to reboot:
+
+```
+reboot
+```
+
+When the system goes up, we can open a terminal and check the kernel in use and the network status again:
+
+```
+uname -mrs
+ip link
+ip addr
+```
+
+If the only network interface present is the loopback (**lo**) interface, like in the picture below, then the procedure was successful! We can furtherly confirm it by a browser, or by opening the Electrum wallet and trying to connect it to any server... it will always stay offline!
+
+![screenshot](/screenshots/network_status_end.png?raw=true)
