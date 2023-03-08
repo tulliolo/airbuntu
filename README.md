@@ -68,7 +68,7 @@ wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.19.17.tar.xz
 
 :warning: **WARNING**: replace _linux-5.19.17.tar.xz_ with any version of your choice, but be sure to grab a kernel of the same serie of your running one! Indeed, in the following steps we will copy the current running configuration in order not to configure the new kernel from scratch. Kernels of different series could have differences in the configuration files, which could be not totally compatible.
 
-:warning: **WARNING**: in the following steps I would refer only to the kernel of my choice (5.19.17). If you grab something else, be careful to properly adapt the following commands.
+:warning: **WARNING**: in the following steps I will refer only to the kernel of my choice (5.19.17). If you grab something else, be careful to properly adapt the following commands.
 
 ![screenshot](/screenshots/kernel_download.png?raw=true)
 
@@ -108,7 +108,7 @@ In order to save the configuration, you can select the action **Save** and press
 
 Following the instructions above, we can completely remove the network interfaces by unmarking (by the **n** key) the following fields:
 - Networking Support ---&gt;&nbsp;&nbsp;Wireless ---&gt;&nbsp;&nbsp;**cfg80211 – wireless configuration API**
-- Device Drivers ---&gt;&nbsp;&nbsp;**Network devide support ---&gt;**<br/>This is a submenu, so you have to access it and then unmark every field in it and in its submenus; don't worry if a few fields stay marked, because they cannot be unmarked but won't invalidate the result.
+- Device Drivers ---&gt;&nbsp;&nbsp;**Network devide support ---&gt;**<br/>This is a submenu, so you have to access it and then unmark every field in it and in its submenus; don't worry if a few fields stay marked, because they cannot be all unmarked, but they won't invalidate the result.
 
 After this, you can **Save** the new configuration and **Exit**.
 
